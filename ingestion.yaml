@@ -1,0 +1,12 @@
+source:
+    type: druid
+    config:
+        host_port: bd4nrg-htap.vm.fedcloud.eu:8082
+        username: admin
+        password: password1
+        schema_pattern.deny: "^lookup.\*"
+sink:
+    type: datahub-rest
+    config:
+        server: http://localhost:8080
+
