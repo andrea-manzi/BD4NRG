@@ -1,9 +1,15 @@
 pageInfo:
   title: BD4NRG Data Platform Entry
 sections:
-  - type: image
-    options:
-      imagePath: /logo.png
+  - name: BD4NRG Project
+    widgets: 
+    - type: image
+      options:
+        imagePath: /logo.png
+    items:
+      - title: Website
+        url: http://www.bd4nrg.eu
+        icon: favicon
   - name: HTAP Local Services
     icon: far fa-server
     items:
