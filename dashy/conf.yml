@@ -28,6 +28,11 @@ sections:
         icon: https://datahubproject.io/img/datahub-logo-color-light-horizontal.svg
         url: http://bd4nrg-datahub.vm.fedcloud.eu:9002
         target: newtab
+      - title: MongoDB
+        description: DB to store ingestion specifications
+        icon: hl-mongodb
+        url: http://bd4nrg-ddp.vm.fedcloud.eu:27017 
+        target: newtab
   - name: Integrated Query Engine Services
     icon: far fa-server
     items:
