@@ -1,6 +1,6 @@
 # BD4NRG
 
-##DataHub
+## DataHub
 
 setup:
 
