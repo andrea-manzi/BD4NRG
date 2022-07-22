@@ -1,0 +1,50 @@
+pageInfo:
+  title: BD4NRG Data Platform Entry
+sections:
+  - name: HTAP Local Services
+    icon: far fa-server
+    items:
+      - title: Portainer
+        description: HTAP VM portainer
+        icon: hl-portainer
+        url: http://bd4nrg-htap.vm.fedcloud.eu:8999
+        target: modal
+      - title: HTAP OLAP
+        description: Apache Druid instance for OLAP
+        icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Apache_Druid_logo.svg/1024px-Apache_Druid_logo.svg.png?20210417151619
+        url: http://bd4nrg-htap.vm.fedcloud.eu:8888/
+        target: newtab
+        statusCheckAcceptCodes: '401'
+      - title: HTAP Lake
+        description: MINIO instance for Lake
+        icon: hl-minio
+        url: http://bd4nrg-htap.vm.fedcloud.eu:9001/
+        target: newtab
+  - name: DDP Local Services
+    icon: far fa-server
+    items:
+      - title: DataHub
+        description: Dynamic Data Provider VM datahub
+        icon: https://datahubproject.io/img/datahub-logo-color-light-horizontal.svg
+        url: http://bd4nrg-datahub.vm.fedcloud.eu:9002
+        target: newtab
+  - name: Integrated Query Engine Services
+    icon: far fa-server
+    items:
+      - title: Trino
+        description: Apache Trino cluster
+        icon: favicon
+        url: http://bd4nrg.epu.ntua.gr:8080
+        target: newtab
+      - title: Query Engine
+        description: Query Engine UI
+        icon: favicon
+        url: http://bd4nrg.epu.ntua.gr:8002
+        target: newtab
+appConfig:
+  statusCheckInterval: 20
+  statusCheck: true
+  theme: default
+  layout: vertical
+  iconSize: small
+  language: en
