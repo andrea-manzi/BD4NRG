@@ -1,6 +1,9 @@
 pageInfo:
   title: BD4NRG Data Platform Entry
 sections:
+  - type: image
+    options:
+      imagePath: /logo.png
   - name: HTAP Local Services
     icon: far fa-server
     items:
