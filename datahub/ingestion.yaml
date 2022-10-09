@@ -4,9 +4,9 @@ source:
         host_port: bd4nrg-htap.vm.fedcloud.eu:8082
         username: admin
         password: password1
-        schema_pattern.deny: "^lookup.\*"
+        include_views: False
 sink:
     type: datahub-rest
     config:
-        server: http://localhost:8080
+        server: http://147.213.76.78:8080
 

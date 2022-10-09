@@ -13,7 +13,6 @@ import javax.validation.constraints.*;
  */
 @Schema(description = "Ingestion specification")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-04T07:50:43.523Z[GMT]")
 
 
 public class Ingestion   {
