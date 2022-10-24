@@ -42,6 +42,30 @@ sections:
         icon: hl-mongodb
         url: http://bd4nrg-ddp.vm.fedcloud.eu:27017 
         target: newtab
+  - name: ENERC VM
+    icon: far fa-server
+    items:
+      - title: NOVAAS-ENERC bckend
+        description: NOVAAS instance for Enerc (Node-Red dev env)
+        icon: hl-nodered
+        url: http://100.116.184.89:31880/
+        target: modal
+      - title: NOVAAS-ENERC UI
+        description: NOVAAS instance for Enerc (User Interface)
+        icon: >-
+          http://gitlab.com/uploads/-/system/project/avatar/28647588/NOVAAS_Logo_wiki.png?width=32
+        url: http://100.116.184.89:31880/ui
+        target: modal
+      - title: I&AM Server
+        description: Keycloak Server (Admin Console)
+        icon: hl-keycloak
+        url: http://100.116.184.89:30090
+        target: newtab
+      - title: Portainer
+        description: Portainer for managing Edge Container-based Env
+        icon: hl-portainer
+        url: http://100.116.184.89:30777
+        target: modal
   - name: Integrated Query Engine Services
     icon: far fa-server
     items:
