@@ -79,6 +79,14 @@ sections:
         icon: favicon
         url: http://bd4nrg.epu.ntua.gr:8002
         target: newtab
+  - name: Data Access Policy Brokerage Functionality
+    icon: far fa-server
+    items:
+      - title: FIWARE Keyrock 
+        description: FIWARE Identity Manager 
+        icon: favicon
+        url: http://bd4nrg-keyrock.vm.fedcloud.eu:3000/
+        target: newtab
 appConfig:
   statusCheckInterval: 20
   statusCheck: true
