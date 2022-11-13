@@ -1,6 +1,7 @@
 package io.swagger.api;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -60,27 +61,21 @@ public class DruidApiController implements DruidApi {
         return new ResponseEntity<Ingestion>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Ingestion> getDruidIngestions() {
+    public ResponseEntity<Ingestion[]> getDruidIngestions() {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                this.restClient = new RestClient("http://"+configuration.getUser()
+                this.restClient = new RestClient("http://"+configuration.getServer()
                 +":"
-                +configuration.getPassword()
-                +"@"
-                +configuration.getServer()
-                +":"
-                +configuration.getPort());
-                System.out.println(configuration.getServer());
-                System.out.println(this.restClient.get("/druid/indexer/v1/tasks"));
-                return new ResponseEntity<Ingestion>(objectMapper.readValue("{\n  \"userMessage\" : \"userMessage\",\n  \"technicalMessage\" : \"technicalMessage\"\n}", Ingestion.class), HttpStatus.NOT_IMPLEMENTED);
+                +configuration.getPort(), configuration.getUser(), configuration.getPassword());
+                return new ResponseEntity<Ingestion[]>(objectMapper.readValue(this.restClient.get("/druid/indexer/v1/tasks"),  Ingestion[].class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<Ingestion>(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<Ingestion[]>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
 
-        return new ResponseEntity<Ingestion>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<Ingestion[]>(HttpStatus.NOT_IMPLEMENTED);
     }
 
 }

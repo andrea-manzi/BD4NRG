@@ -1,5 +1,8 @@
 package io.swagger.api;
 
+import java.nio.charset.Charset;
+import java.util.Base64;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,10 +17,10 @@ public class RestClient {
   private HttpHeaders headers;
   private HttpStatus status;
 
-  public RestClient(String Url) {
+  public RestClient(String Url, String username, String password) {
     this.Url=Url;
     this.rest = new RestTemplate();
-    this.headers = new HttpHeaders();
+    this.headers = RestClient.createHeaders(username, password);
     headers.add("Content-Type", "application/json");
     headers.add("Accept", "*/*");
   }
@@ -55,4 +58,15 @@ public class RestClient {
   public void setStatus(HttpStatus status) {
     this.status = status;
   } 
+  
+  static HttpHeaders createHeaders(final String username, final String password){
+    return new HttpHeaders() {{
+          String auth = username + ":" + password;
+          final byte[] encodedAuth = Base64.getEncoder().encode( 
+             auth.getBytes(Charset.forName("US-ASCII")) );
+          String authHeader = "Basic " + new String( encodedAuth );
+          set( "Authorization", authHeader );
+       }};
+
+}
 }

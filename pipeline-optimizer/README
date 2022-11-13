@@ -1,8 +1,6 @@
-mvn package
+mvn package && docker build -t amanzi/pipeline-optimizer .
 
-docker build -t bd4nrg/pipeline-optimizer .
-
-docker run -p 8080:8080 bd4nrg/pipeline-optimizer
+docker run -p 8080:8080 amanzi/pipeline-optimizer
 
 curl -X GET "http://localhost:8080/pipeline-optimizer/0.0.1/druid/ingestions" -H "accept: application/json"
 
