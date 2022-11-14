@@ -11,11 +11,11 @@ import org.springframework.validation.annotation.Validated;
 @Schema(description = "Ingestion specification")
 @Validated
 public class Ingestion   {
-  @JsonProperty("state")
-  private String state = null;
+  @JsonProperty("status")
+  private String status = null;
 
-  @JsonProperty("datasource")
-  private String datasource = null;
+  @JsonProperty("dataSource")
+  private String dataSource = null;
 
   @JsonProperty("id")
   private String id = null;
@@ -29,12 +29,12 @@ public class Ingestion   {
    **/
   @Schema(description = "Return the ingestion state ")
   
-    public String getState() {
-    return state;
+    public String getStatus() {
+    return status;
   }
 
-  public void setState(String state) {
-    this.state = state;
+  public void setState(String status) {
+    this.status = status;
   }
 
  /**
@@ -43,12 +43,12 @@ public class Ingestion   {
    **/
   @Schema(description = "Return the ingestion datasource ")
   
-    public String getDatasource() {
-    return datasource;
+    public String getDataSource() {
+    return dataSource;
   }
 
-  public void setDatasource(String datasource) {
-    this.datasource = datasource;
+  public void setDatasource(String dataSource) {
+    this.dataSource = dataSource;
   }
 
   /**
@@ -91,14 +91,14 @@ public class Ingestion   {
     }
     Ingestion ingestion = (Ingestion) o;
     return Objects.equals(this.id, ingestion.id) &&
-        Objects.equals(this.datasource, ingestion.datasource) && 
+        Objects.equals(this.dataSource, ingestion.dataSource) && 
         Objects.equals(this.payload, ingestion.payload) &&
-        Objects.equals(this.state, ingestion.state) ;
+        Objects.equals(this.status, ingestion.status) ;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, datasource,payload, state);
+    return Objects.hash(id, dataSource,payload, status);
   }
 
   @Override
@@ -107,8 +107,8 @@ public class Ingestion   {
     sb.append("class Ingestion {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    datasource: ").append(toIndentedString(datasource)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    datasource: ").append(toIndentedString(dataSource)).append("\n");
+    sb.append("    state: ").append(toIndentedString(status)).append("\n");
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -6,23 +6,15 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "htap")
 @Configuration
 public class HTAPConfiguration {
-    String server;
-    String port;
+    String url;
     String user;
     String password;
 
-    public String getServer() {
-        return server;
+    public String getUrl() {
+        return url;
     }
-    public void setServer(String server) {
-        this.server = server;
-    }
-
-    public String getPort() {
-        return port;
-    }
-    public void setPort(String port) {
-        this.port = port;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getUser() {
