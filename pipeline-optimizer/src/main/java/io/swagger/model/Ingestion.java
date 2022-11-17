@@ -2,63 +2,83 @@ package io.swagger.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
-import javax.validation.Valid;
-import javax.validation.constraints.*;
 
 /**
  * Ingestion specification
  */
 @Schema(description = "Ingestion specification")
 @Validated
-
-
 public class Ingestion   {
-  @JsonProperty("userMessage")
-  private String userMessage = null;
+  @JsonProperty("status")
+  private String status = null;
 
-  @JsonProperty("technicalMessage")
-  private String technicalMessage = null;
+  @JsonProperty("dataSource")
+  private String dataSource = null;
 
-  public Ingestion userMessage(String userMessage) {
-    this.userMessage = userMessage;
-    return this;
+  @JsonProperty("id")
+  private String id = null;
+
+  @JsonProperty("payload")
+  private String payload = null;
+
+  /**
+   * Ingestion state
+   * @return state
+   **/
+  @Schema(description = "Return the ingestion state ")
+  
+    public String getStatus() {
+    return status;
+  }
+
+  public void setState(String status) {
+    this.status = status;
+  }
+
+ /**
+   * datasource
+   * @return datasource
+   **/
+  @Schema(description = "Return the ingestion datasource ")
+  
+    public String getDataSource() {
+    return dataSource;
+  }
+
+  public void setDatasource(String dataSource) {
+    this.dataSource = dataSource;
   }
 
   /**
-   * Message to show to the end-users in the UI 
-   * @return userMessage
+   * id
+   * @return id
    **/
-  @Schema(description = "Message to show to the end-users in the UI ")
+  @Schema(description = "Return the ingestion id ")
   
-    public String getUserMessage() {
-    return userMessage;
+    public String getId() {
+    return id;
   }
 
-  public void setUserMessage(String userMessage) {
-    this.userMessage = userMessage;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public Ingestion technicalMessage(String technicalMessage) {
-    this.technicalMessage = technicalMessage;
-    return this;
-  }
-
-  /**
-   * Detailed message that is useful for developers to understand the problem 
-   * @return technicalMessage
+   /**
+   * id
+   * @return id
    **/
-  @Schema(description = "Detailed message that is useful for developers to understand the problem ")
+  @Schema(description = "Return the ingestion payload ")
   
-    public String getTechnicalMessage() {
-    return technicalMessage;
+    public String getPayload() {
+    return payload;
   }
 
-  public void setTechnicalMessage(String technicalMessage) {
-    this.technicalMessage = technicalMessage;
+  public void setPayload(String payload) {
+    this.payload = payload;
   }
+
 
 
   @Override
@@ -70,13 +90,15 @@ public class Ingestion   {
       return false;
     }
     Ingestion ingestion = (Ingestion) o;
-    return Objects.equals(this.userMessage, ingestion.userMessage) &&
-        Objects.equals(this.technicalMessage, ingestion.technicalMessage);
+    return Objects.equals(this.id, ingestion.id) &&
+        Objects.equals(this.dataSource, ingestion.dataSource) && 
+        Objects.equals(this.payload, ingestion.payload) &&
+        Objects.equals(this.status, ingestion.status) ;
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userMessage, technicalMessage);
+    return Objects.hash(id, dataSource,payload, status);
   }
 
   @Override
@@ -84,8 +106,10 @@ public class Ingestion   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Ingestion {\n");
     
-    sb.append("    userMessage: ").append(toIndentedString(userMessage)).append("\n");
-    sb.append("    technicalMessage: ").append(toIndentedString(technicalMessage)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    datasource: ").append(toIndentedString(dataSource)).append("\n");
+    sb.append("    state: ").append(toIndentedString(status)).append("\n");
+    sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("}");
     return sb.toString();
   }
