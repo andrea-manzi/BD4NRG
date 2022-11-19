@@ -25,15 +25,30 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @Validated
 public interface DruidApi {
 
+    /**
+     * @param body
+     * @return
+     */
     @Operation(summary = "Create a new Ingestion specification", description = "", security = {
         @SecurityRequirement(name = "bearerAuth")    }, tags={ "ingestions" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = Ingestion.class))) })
-    @RequestMapping(value = "/druid/ingestions",
-        produces = { "application/json" }, 
+        @ApiResponse(responseCode = "200", description = "OK") })
+    @RequestMapping(value = "/druid/ingestion",
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Ingestion> createIngestion(@Parameter(in = ParameterIn.DEFAULT, description = "The name of the ingestion", required=true, schema=@Schema()) @Valid @RequestBody Ingestion body);
+    String createIngestion(@Parameter(in = ParameterIn.DEFAULT, description = "The ingestion", required=true, schema=@Schema()) @Valid @RequestBody Ingestion body);
+
+     /**
+     * @param id
+     * @return
+     */
+    @Operation(summary = "Resubmit an Ingestion specification", description = "", security = {
+        @SecurityRequirement(name = "bearerAuth")    }, tags={ "ingestions" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK") })
+    @RequestMapping(value = "/druid/reingestion/{id}",
+        method = RequestMethod.PUT)
+    String resubmitIngestion(@PathVariable String id);
 
 
     @Operation(summary = "Retrieve information about Ingestions from Druid", description = "", security = {

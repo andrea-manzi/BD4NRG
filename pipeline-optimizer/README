@@ -4,4 +4,6 @@ docker run -p 8080:8080 amanzi/pipeline-optimizer
 
 curl -X GET "http://localhost:8080/pipeline-optimizer/0.0.1/druid/ingestions" -H "accept: application/json"
 
+curl -X PUT "http://localhost:8080/pipeline-optimizer/0.0.1/druid/reingestion/index_parallel_2019_12032_1_1_SP2_20191120_15_15_06_173_hajgkmij_2022-07-21T12:39:52.773Z"
+
 

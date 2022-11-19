@@ -17,6 +17,16 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Swagger2SpringBoot<swagger-spring>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "io.swagger.Swagger2SpringBoot",
+            "projectName": "swagger-spring",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

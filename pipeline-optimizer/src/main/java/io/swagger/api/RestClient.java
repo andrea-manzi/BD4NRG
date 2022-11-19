@@ -27,7 +27,6 @@ public class RestClient {
 
   public String get(String uri) {
     HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-    System.out.println(Url + uri);
     ResponseEntity<String> responseEntity = rest.exchange(Url + uri, HttpMethod.GET, requestEntity, String.class);
     this.setStatus(responseEntity.getStatusCode());
     System.out.println(responseEntity.getBody());
