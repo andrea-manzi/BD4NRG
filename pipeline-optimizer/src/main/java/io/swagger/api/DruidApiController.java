@@ -41,18 +41,16 @@ public class DruidApiController implements DruidApi {
     @Autowired
     private IngestionSpecificationRepository specificationRepository;
 
-    private RestClient restClient;
-
+    private  RestClient restClient;
 
     /**
      * @param objectMapper
      * @param request
      */
-    @org.springframework.beans.factory.annotation.Autowired
+    @Autowired
     public DruidApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
-
     }
 
     public String resubmitIngestion(@PathVariable String id) {
@@ -61,14 +59,11 @@ public class DruidApiController implements DruidApi {
             
                 IngestionSpecification spec =this.specificationRepository.findItemByName(
                     id);
-    
+
                 System.out.println(spec.getUrn());
                 System.out.println(spec.getIngestionSpec());
 
-                this.restClient = new RestClient(configuration.getUrl(),
-                configuration.getUser(), configuration.getPassword());
-
-
+                restClient =  RestClient.getClient(configuration);
                 return this.restClient.post("/druid/indexer/v1/task",spec.getIngestionSpec()) ;
             } catch (Exception e) {
                 log.error("Exception invoking the task creation", e);
@@ -80,8 +75,8 @@ public class DruidApiController implements DruidApi {
         String accept = request.getHeader("Accept");
         if (accept != null) {
             try {
-                this.restClient = new RestClient(configuration.getUrl(),
-                    configuration.getUser(), configuration.getPassword());
+                restClient =  RestClient.getClient(configuration);
+        
                 return this.restClient.post("/druid/indexer/v1/task", body.toString());
             } catch (Exception e) {
                 log.error("Exception invoking the task creation", e);
@@ -96,8 +91,8 @@ public class DruidApiController implements DruidApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                this.restClient = new RestClient(configuration.getUrl(),
-                configuration.getUser(), configuration.getPassword());
+        
+                restClient = RestClient.getClient(configuration);
                 return  new ResponseEntity<IngestionReport>(objectMapper.readValue(this.restClient.get("/druid/indexer/v1/task/"+id+"/reports"),  IngestionReport.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
@@ -111,9 +106,8 @@ public class DruidApiController implements DruidApi {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                
-                this.restClient = new RestClient(configuration.getUrl(),
-                    configuration.getUser(), configuration.getPassword());
+                restClient = RestClient.getClient(configuration);
+
                 return new ResponseEntity<Ingestion[]>(objectMapper.readValue(this.restClient.get("/druid/indexer/v1/tasks"),  Ingestion[].class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
