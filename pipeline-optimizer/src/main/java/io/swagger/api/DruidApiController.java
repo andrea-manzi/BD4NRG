@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import io.swagger.configuration.HTAPConfiguration;
 import io.swagger.model.Ingestion;
@@ -54,17 +57,19 @@ public class DruidApiController implements DruidApi {
     }
 
     public String resubmitIngestion(@PathVariable String id) {
-        
+        IngestionSpecification spec = null;
             try {
-            
-                IngestionSpecification spec =this.specificationRepository.findItemByName(
+                spec =this.specificationRepository.findItemByName(
                     id);
-
-                System.out.println(spec.getUrn());
-                System.out.println(spec.getIngestionSpec());
+                if (spec == null) 
+                    return HttpStatus.NOT_FOUND.toString();
+                JsonObject jsonObject = new JsonParser().parse(spec.getIngestionSpec()).getAsJsonObject();
+                String specId = jsonObject.get("id").getAsString();
+                String newid = specId+"_resubmitted";
+                jsonObject.addProperty("id",newid);
 
                 restClient =  RestClient.getClient(configuration);
-                return this.restClient.post("/druid/indexer/v1/task",spec.getIngestionSpec()) ;
+                return this.restClient.post("/druid/indexer/v1/task",jsonObject.toString()) ;
             } catch (Exception e) {
                 log.error("Exception invoking the task creation", e);
                 return HttpStatus.INTERNAL_SERVER_ERROR.toString();

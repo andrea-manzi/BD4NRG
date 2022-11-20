@@ -23,14 +23,37 @@ public class IngestionSpecification {
 
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setUrn(String urn) {
+        this.urn = urn;
+    }
+
     public String getUrn() {
         return this.urn;
     }
-    public String getIngestionSpec() {
+
+    public void setIngestionSpec(String ingestionSpec) {
+        IngestionSpec = ingestionSpec;
+    }
+
+    public String  getIngestionSpec() {
         return this.IngestionSpec;
     }
-    public String druidIngestionSpecID() {
-        return this.druidIngestionSpecID;
+
+    public String getDruidIngestionSpecID() {
+        return druidIngestionSpecID;
     }
-    
+
+    public void setDruidIngestionSpecID(String druidIngestionSpecID) {
+        this.druidIngestionSpecID = druidIngestionSpecID;
+
+    }
+
 }
