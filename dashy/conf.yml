@@ -29,6 +29,11 @@ sections:
         icon: hl-minio
         url: http://bd4nrg-htap.vm.fedcloud.eu:9001/
         target: newtab
+      - title: HTAP Kafka Broker
+        description: UI for Apache Kafka
+        icon: si-apachekafka
+        url: http://bd4nrg-htap.vm.fedcloud.eu:8085/
+        target: modal
   - name: DDP Local Services
     icon: far fa-server
     items:
