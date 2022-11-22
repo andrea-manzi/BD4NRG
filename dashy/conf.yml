@@ -47,6 +47,11 @@ sections:
         icon: hl-mongodb
         url: http://bd4nrg-ddp.vm.fedcloud.eu:27017 
         target: newtab
+      - title: Pipeline Optimizer
+        description: Pipeline Optimizer component 
+        icon: favicon
+        url: http://bd4nrg-ddp.vm.fedcloud.eu:8080/pipeline-optimizer/0.0.1
+        target: newtab
   - name: ENERC VM
     icon: far fa-server
     items:

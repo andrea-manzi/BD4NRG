@@ -47,7 +47,7 @@ public class Ingestion   {
     return dataSource;
   }
 
-  public void setDatasource(String dataSource) {
+  public void setDataSource(String dataSource) {
     this.dataSource = dataSource;
   }
 

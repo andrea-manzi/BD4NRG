@@ -13,9 +13,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Generic error response object for server side errors")
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-10-04T07:50:43.523Z[GMT]")
-
-
 public class Error   {
   @JsonProperty("errorCode")
   private Integer errorCode = null;
